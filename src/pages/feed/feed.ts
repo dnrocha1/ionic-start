@@ -29,6 +29,8 @@ export class FeedPage {
     time_comment: "11h ago"
   }
 
+  public lista_filmes = new Array<any>();
+
   public somaDoisNumeros() {
     alert(this.nome_usuario);
   }
@@ -42,9 +44,12 @@ export class FeedPage {
 
   ionViewDidLoad() {
     //this.somaDoisNumeros();
-    this.movieProvider.getLastestMovies().subscribe(
+    this.movieProvider.getPopularMovies().subscribe(
       data => {
-        console.log(data);
+        const response = (data as any);
+        this.lista_filmes = response.results;
+        console.log(this.lista_filmes);
+        //console.log(data['results']);
       },
       error => {
         console.log(error);
